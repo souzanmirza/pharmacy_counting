@@ -86,10 +86,10 @@ if __name__=='__main__':
         pharmacyoutfile.truncate(pharmacyoutfile.tell()-len(os.linesep))
         pharmacyoutfile.close()
 
-    import sys
+    import sys, time
     print(sys.version)
     main()
-    input()
+    time.sleep(3600)
     # lp = LineProfiler()
     # lp_wrapper = lp(main)
     # lp_wrapper()
