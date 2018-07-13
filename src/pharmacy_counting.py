@@ -8,7 +8,7 @@ import argparse
 import os
 import csv
 
-# from line_profiler import LineProfiler
+from line_profiler import LineProfiler
 
 if __name__=='__main__':
     def main():
@@ -18,9 +18,7 @@ if __name__=='__main__':
         args = parser.parse_args()
 
         # pharmacyinfile = open(args.dbinput, 'r')
-        pharmacyoutfile = open(args.dboutput, 'w')
-        #
-        pharmacyinput = []
+        # pharmacyinput = []
         # header = pharmacyinfile.readline().strip('\n').split(',')
         # drugs = []
 
@@ -79,19 +77,43 @@ if __name__=='__main__':
         drugspaired = sorted(drugspaired, key=lambda row: row[0])
         drugspaired = sorted(drugspaired, key=lambda row: row[1]['cost'], reverse=True)
 
+        with open(args.dboutput, 'w', newline='\n') as pharmacyoutfile:
+            fieldnames = ['drug_name', 'num_prescriber', 'total_cost']
+            writer = csv.DictWriter(pharmacyoutfile, fieldnames=fieldnames)
+            writer.writeheader()
+            for entry in drugspaired:
+                writer.writerow(
+                    {'drug_name': entry[0], 'num_prescriber': len(entry[1])-1, 'total_cost': round(entry[1]['cost'])})
+            pharmacyoutfile.truncate(pharmacyoutfile.tell() - len(os.linesep))
 
 
-        pharmacyoutfile.write('drug_name,num_prescriber,total_cost\n')
-        for line in output:
-            pharmacyoutfile.writelines('%s,%d,%d\n'%(line[0], line[1], round(line[2], 0)))
-        pharmacyoutfile.truncate(pharmacyoutfile.tell()-len(os.linesep))
-        pharmacyoutfile.close()
+            #
+            # # assert druginfodict.has_key('cost'), 'Invalid drug info dict'
+            # assert 'cost' in druginfodict, 'Invalid drug info dict'
+            # drugs.append(drug)
+            # numprescribers.append(len(druginfodict)-1)
+            # totalcost.append(druginfodict['cost'])
+            # output.append([drug, len(druginfodict)-1, druginfodict['cost']])
 
-    import sys, time
-    print(sys.version)
-    main()
-    time.sleep(3600)
-    # lp = LineProfiler()
-    # lp_wrapper = lp(main)
-    # lp_wrapper()
-    # lp.print_stats()
+        # def sortingkey(dictvalues):
+        #     return dictvalues[1]
+
+        # drugspaired = sorted(drugspaired, key=lambda row: row[0])
+        # drugspaired = sorted(drugspaired, key=lambda row: row[1]['cost'], reverse=True)
+        #
+        # with open(args.dboutput, 'w', newline='\n') as pharmacyoutfile:
+        #     fieldnames = ['drug_name', 'num_prescriber', 'total_cost']
+        #     writer = csv.DictWriter(pharmacyoutfile, fieldnames=fieldnames)
+        #     writer.writeheader()
+        #     for entry in drugspaired:
+        #         writer.writerow({'drug_name': entry[0], 'num_prescriber': len(entry[1])-1, 'total_cost': round(entry[1]['cost'])})
+        #     pharmacyoutfile.truncate(pharmacyoutfile.tell() - len(os.linesep))
+
+    # import sys, time
+    # print(sys.version)
+    # main()
+    # time.sleep(3600)
+    lp = LineProfiler()
+    lp_wrapper = lp(main)
+    lp_wrapper()
+    lp.print_stats()
