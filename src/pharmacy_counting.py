@@ -45,21 +45,23 @@ if __name__=='__main__':
             for i, entry in enumerate(reader):
                 if i > 500000:
                     break
-                drug = entry[3]
-                prescriber = entry[0]
-                cost = float(entry[4])
-                # if drugdict.has_key(drug):
-                if drug in drugdict:
-                    druginfodict = drugdict[drug]
-                    # if not druginfodict.has_key(prescriber):
-                    if prescriber not in druginfodict:
+                if len(entry) == 5:
+                    drug = entry[3]
+                    prescriber = entry[0]
+                    cost = float(entry[4])
+                    # if drugdict.has_key(drug):
+                    if drug in drugdict:
+                        druginfodict = drugdict[drug]
+                        # if not druginfodict.has_key(prescriber):
+                        if prescriber not in druginfodict:
+                            druginfodict[prescriber] = True
+                        druginfodict['cost'] = druginfodict['cost'] + cost
+                    else:
+                        druginfodict = {}
+                        drugdict[drug] = druginfodict
                         druginfodict[prescriber] = True
-                    druginfodict['cost'] = druginfodict['cost'] + cost
+                        druginfodict['cost'] = cost
                 else:
-                    druginfodict = {}
-                    drugdict[drug] = druginfodict
-                    druginfodict[prescriber] = True
-                    druginfodict['cost'] = cost
 
 
         drugs = []
