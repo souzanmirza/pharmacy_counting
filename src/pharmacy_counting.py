@@ -62,25 +62,24 @@ if __name__=='__main__':
                         druginfodict[prescriber] = True
                         druginfodict['cost'] = cost
                 else:
+                    print('Entry invalid %s of size %d'%(entry, len(entry)))
+        # drugs = []
+        # numprescribers = []
+        # totalcost = []
+        # output = []
+
+        # for drug in drugdict.keys():
+        #     druginfodict = drugdict[drug]
+        #     if len(druginfodict)<2:
+        #         del drugdict[drug]
+
+        drugspaired = zip(drugdict.keys(), drugdict.values())
+        drugspaired = list(drugspaired)
+
+        drugspaired = sorted(drugspaired, key=lambda row: row[0])
+        drugspaired = sorted(drugspaired, key=lambda row: row[1]['cost'], reverse=True)
 
 
-        drugs = []
-        numprescribers = []
-        totalcost = []
-        output = []
-
-        for drug in drugdict.keys():
-            druginfodict = drugdict[drug]
-            assert len(druginfodict)>=2, 'Invalid drug info dict'
-            # assert druginfodict.has_key('cost'), 'Invalid drug info dict'
-            assert 'cost' in druginfodict, 'Invalid drug info dict'
-            drugs.append(drug)
-            numprescribers.append(len(druginfodict)-1)
-            totalcost.append(druginfodict['cost'])
-            output.append([drug, len(druginfodict)-1, druginfodict['cost']])
-
-        output.sort(key=lambda row: row[0])
-        output.sort(key=lambda row: row[2], reverse=1)
 
         pharmacyoutfile.write('drug_name,num_prescriber,total_cost\n')
         for line in output:
