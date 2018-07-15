@@ -1,13 +1,20 @@
 # Table of Contents
 1. [Problem](README.md#problem)
-2. [Solution Implementation](README.md#solution-implementation)
-3. [Installation and Testing](README.md#installation-and-testing)
+2. [Summary](README.md#summary)
+3. [Solution](README.md#solution)
+4. [Testing](README.md#testing)
 
 # Problem
 
 Insight coding challenge problem was to generate a list a list of all the prescribed drugs, the number of unique prescribers and total cost of the drug given a list of drugs, prescribers and the cost the drug was prescribed for. The solution is intended to be well tested, documented and scalable. You are allowed to chose the programming language for implementation but you are limited to that language's built-in data types and libraries.
 
-# Solution Implementation
+# Summary
+* implementation
+* error handling
+* runtime of 
+* memory usage
+
+# Solution
 
 I implemented my solution in python. The main objective of my code was for it to be fast to process large dataset inputs. My code is processes the records using a hashtable implemented in the dict built-in data type. I chose a hashtable because search and insert functions take on average O(1) time and they require unique entries. Since the problem was centered around the type of drug being prescribed, the drug was used as the key in the *drug_dict*. Each drug entry in the *drug_dict* had a dict called *dictinfodict* which stored the unique ID's of the prescribers and the total cost.
 
@@ -36,9 +43,10 @@ If valid the entry is added to *drug_dict*:
 
 Once all the entries have been read in from the input file the *drug_dict* is put in descending order by cost and if two drugs have the same cost in alphabetical order and then output to a file as comma separate entries of drug name, number of unique prescribers and total cost using the csv library.
 
-# Installation and Testing
-
+## Installation
 To run the solution use the [run.sh](https://github.com/souzanmirza/pharmacy_counting/blob/master/run.sh) file which runs the [pharmacy_main.py](https://github.com/souzanmirza/pharmacy_counting/blob/master/src/pharmacy_main.py) with [itcont.txt](https://github.com/souzanmirza/pharmacy_counting/blob/master/input/itcont.txt) as input and [top_drug_cost.txt](https://github.com/souzanmirza/pharmacy_counting/blob/master/output/top_cost_drug.txt) as output. 
+
+# Testing
 
 ## Sample Test
 
@@ -72,7 +80,7 @@ To run the unit tests use the [run_unittests.sh](https://github.com/souzanmirza/
 The testsuite tests can be run using the [run_tests.sh](https://github.com/souzanmirza/pharmacy_counting/blob/master/insight_testsuite/run_tests.sh) file to run the sample test in [test_1](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_1). Five other tests were implemented which test the following:
 * [test_2](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_2): tests the result when the cost of an entry in itcont.txt is invalid.
 * [test_3](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_3): tests the result when the entries from itcont.txt are copied 268 times and given unique *prescriber_id's*.
-* [test_4](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_4): tests the result when the cost of an entry in itcont.txt is set to zero.
+* [test_4](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_4): tests the result when the cost of an entry in itcont.txt is set to zero. This test also tests the floating point precision.
 * [test_5](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_5): tests the result when the *prescriber_id* of an entry in itcont.txt is invalid.
 * [test_6](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_6): tests the result when an extra entry is added to itcont.txt which has the same name as another drug but with a '-' instead of a whitespace.
 
@@ -82,42 +90,8 @@ pharmacy_counting
 |   README.md
 |   run.sh
 |   run_unittests.sh
-|
 +---input
 |       itcont.txt
-+---insight_testsuite
-|   |   run_tests.sh
-|   \---tests
-|       +---test_1
-|       |   +---input
-|       |   |       itcont.txt
-|       |   \---output
-|       |           top_cost_drug.txt
-|       +---test_2
-|       |   +---input
-|       |   |       itcont.txt
-|       |   \---output
-|       |           top_cost_drug.txt
-|       +---test_3
-|       |   +---input
-|       |   |       itcont.txt
-|       |   \---output
-|       |           top_cost_drug.txt
-|       +---test_4
-|       |   +---input
-|       |   |       itcont.txt
-|       |   \---output
-|       |           top_cost_drug.txt   
-|       +---test_5
-|       |   +---input
-|       |   |       itcont.txt  
-|       |   \---output
-|       |           top_cost_drug.txt        
-|       \---test_6  
-|           +---input
-|           |       itcont.txt   
-|           \---output
-|                   top_cost_drug.txt 
 +---output
 |       top_cost_drug.txt
 +---src
@@ -125,12 +99,27 @@ pharmacy_counting
 |   |   pharmacy_main.py
 |   |   README.md
 |   |   __init__.py
-\---unit_tests
-    |   results.txt
-    |   test_addEntry.py
-    |   test_positiveNumber.py
-    |   test_validEntry.py
-    |   __init__.py
++---unit_tests
+|   |   test_addEntry.py
+|   |   test_positiveNumber.py
+|   |   test_validEntry.py
+|   |   __init__.py
+\---insight_testsuite
+    |   run_tests.sh
+    \---tests
+        +---test_1
+        |   +---input
+        |   |       itcont.txt
+        |   \---output
+        |           top_cost_drug.txt
+        . . . 
+        . . .
+        . . .
+        \---test_6  
+            +---input
+            |       itcont.txt   
+            \---output
+                    top_cost_drug.txt 
 ```            
 
 
