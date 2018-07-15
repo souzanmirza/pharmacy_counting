@@ -17,7 +17,8 @@ def positiveNumber(field):
 
 def validEntry(entry):
     """
-    Checks if the entry is valid. Calls isPositiveNumber to check if the prescriber_id and cost are positive floats.
+    Checks if the entry is valid. Calls isPositiveNumber to check if the prescriber_id and 
+    cost are positive floats.
     :param entry: [prescriber_id, prescriber_fn, prescriber_ln, drug, cost]
     :return: True if valid and entry with updated fields. False otherwise.
     """
@@ -41,7 +42,8 @@ def validEntry(entry):
 
 def addEntry(entry, dict):
     """
-    Adds an entry to the dictionary. drug is the key with a dictionary value containing the unique prescriber_id's and total cost.
+    Adds an entry to the dictionary. drug is the key with a dictionary value containing the 
+    unique prescriber_id's and total cost.
     :param entry: [prescriber_id, prescriber_fn, prescriber_ln, drug, cost]
     :param dict: dictionary of entries
     :return: dict with entry added or updated

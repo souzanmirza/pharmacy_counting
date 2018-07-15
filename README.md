@@ -22,7 +22,7 @@ drug_dict = {
 
 where *druginfodict* for *drugA* is `{'prescriber1:True; 'cost':100}.`
 
-The csv reader library was used to read the entries from the input file. Each entry was checked to see if it was valid which was defined as
+The csv library was used to read the entries from the input file. Each entry was checked to see if it was valid which was defined as
 1. Length of entry is 5.
 2. 1st entry (*prescriber_id*) can be cast to positive float.
 3. 5th entry (*cost*) can be cast to positive float.
@@ -34,7 +34,7 @@ If valid the entry is added to *drug_dict*:
 	1. If *prescriber_id* exists in the *druginfodict*, add the *cost* from this entry to `druginfodict['cost'] +=cost.`
 	2. If *prescriber_id* does not exists in the *druginfodict*, add `druginfodict = {'prescriber_id':True}` and add the *cost* from this entry to `druginfodict['cost'] +=cost.`
 
-Once all the entries have been read in from the input file the *drug_dict* is put in descending order by cost and if two drugs have the same cost in alphabetical order and then output to a file as comma separate entries of drug name, number of unique prescribers and total cost.
+Once all the entries have been read in from the input file the *drug_dict* is put in descending order by cost and if two drugs have the same cost in alphabetical order and then output to a file as comma separate entries of drug name, number of unique prescribers and total cost using the csv library.
 
 # Installation and Testing
 
@@ -76,7 +76,7 @@ The testsuite tests can be run using the [run_tests.sh](https://github.com/souza
 * [test_5](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_5): tests the result when the *prescriber_id* of an entry in itcont.txt is invalid.
 * [test_6](https://github.com/souzanmirza/pharmacy_counting/tree/master/insight_testsuite/tests/test_6): tests the result when an extra entry is added to itcont.txt which has the same name as another drug but with a '-' instead of a whitespace.
 
-## Repo directory structure
+## Repo Directory Structure
 ```
 pharmacy_counting
 |   README.md
