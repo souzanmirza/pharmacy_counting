@@ -4,8 +4,7 @@ import csv
 import pharmacy_helper
 import time
 
-if __name__ == '__main__':
-    def main():
+def main():
         """
         input: comma separated file of [prescriber_id, prescriber_fn, prescriber_ln, drug, cost]
         output: comma separated file of drug, number of unique prescribers, total cost in order
@@ -51,6 +50,8 @@ if __name__ == '__main__':
                 )
             pharmacy_outfile.truncate(pharmacy_outfile.tell() - len(os.linesep))
 
+
+if __name__ == '__main__':    
     # start_time = time.time()
     # print(start_time)
     main()
