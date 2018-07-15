@@ -1,5 +1,3 @@
-import math
-
 def positiveNumber(field):
     """
     Checks if field is a positive float.
@@ -8,15 +6,13 @@ def positiveNumber(field):
     """
     try:
         tmp = float(field)
-        if tmp < 0:
-            return False
-        if math.isnan(tmp):
-            return False
-        return tmp
+        if tmp >= 0:
+            return tmp
     except ValueError:
         return False
     except TypeError:
         return False
+    return False
 
 
 def validEntry(entry):
