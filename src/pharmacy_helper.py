@@ -47,20 +47,16 @@ def addEntry(entry, dict):
     :return: dict with entry added or updated
     """
     if validEntry(entry):
-        try:
-            entry_dict = {}
-            if entry[3] in dict:
-                entry_dict = dict[entry[3]]
-                if entry[0] not in entry_dict:
-                    entry_dict[entry[0]] = True
-                entry_dict['cost'] = entry_dict['cost'] + entry[4]
-            else:
-                dict[entry[3]] = entry_dict
+        entry_dict = {}
+        if entry[3] in dict:
+            entry_dict = dict[entry[3]]
+            if entry[0] not in entry_dict:
                 entry_dict[entry[0]] = True
-                entry_dict['cost'] = entry[4]
-        except TypeError:
-            print('Invalid dictionary')
-            return False
+            entry_dict['cost'] = entry_dict['cost'] + entry[4]
+        else:
+            dict[entry[3]] = entry_dict
+            entry_dict[entry[0]] = True
+            entry_dict['cost'] = entry[4]
     else:
         print('Invalid entry %s' % entry)
         return False

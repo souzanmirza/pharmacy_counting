@@ -4,23 +4,25 @@ from src.pharmacy_helper import addEntry
 class TestAddEntry(unittest.TestCase):
     def setUp(self):
         self.dict = {}
-        self.entry = ['0', 'fn', 'ln', 'drug', '200']
-
-    def test_dict(self):
-        self.assertTrue(addEntry(self.entry, self.dict))
-        self.assertFalse(addEntry(self.entry, []))
+        self.validentry = ['0', 'fn', 'ln', 'drug', '200']
+        self.invalidentry = ['0', 'fn', 'ln', 'drug', '-200']
 
     def test_entry(self):
-        self.assertTrue(addEntry(self.entry, self.dict))
-        self.assertFalse(addEntry(['0', 'fn', 'ln', 'drug', '-200'], self.dict))
+        self.assertTrue(addEntry(self.validentry, self.dict))
+        self.assertFalse(addEntry(self.invalidentry, self.dict))
 
-    # def test_addenty(self):
-    #     testdict = {}
-    #     self.assertEqual(addEntry(self.entry, self.dict), testdict.push(self.entry))
-    #     testdict['drug'] =
-    #     self.assertEqual(addEntry(self.entry, self.dict, self.entry))
-    #     self.assertEqual(addEntry([-1, 'fn', 'ln', 'drug', '200'], self.dict, testdict)) # invalid entry
-    #     self.assertEqual(addEntry([1, 'fn', 'ln', 'drug2', '200'], self.dict, testdict))
+    def test_addentry(self):
+        addEntry(self.validentry, self.dict)
+        testdict = {'drug': {0.0: True, 'cost': 200.0}}
+        self.assertEqual(self.dict,testdict)
+        addEntry(self.validentry, self.dict)
+        testdict = {'drug': {0.0: True, 'cost': 400.0}}
+        self.assertEqual(self.dict, testdict)
+        addEntry(self.invalidentry, self.dict)
+        self.assertEqual(self.dict, testdict)
+        self.dict.clear()
+        addEntry(self.invalidentry, self.dict)
+        self.assertEqual(self.dict, {})
 
 if __name__=='__main__':
     unittest.main()

@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jul 11 22:29:39 2018
-
-@author: Souzan
-"""
 import argparse
 import os
 import csv
@@ -35,9 +29,7 @@ if __name__ == '__main__':
                 next(reader)
                 drug_dict = {}
                 for i, entry in enumerate(reader):
-                    if not pharmacy_helper.addEntry(entry, drug_dict):
-                        print('Invalid drug_dict')
-                        return
+                    pharmacy_helper.addEntry(entry, drug_dict)
         except IOError:
             print('Input file does not exist')
             return
@@ -59,7 +51,7 @@ if __name__ == '__main__':
                 )
             pharmacy_outfile.truncate(pharmacy_outfile.tell() - len(os.linesep))
 
-    start_time = time.time()
-    print(start_time)
+    # start_time = time.time()
+    # print(start_time)
     main()
-    print(time.time()-start_time)
+    # print(time.time()-start_time)
