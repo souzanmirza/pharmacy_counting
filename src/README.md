@@ -1,4 +1,4 @@
-Help on module pharmacy_main:
+This folder contains the source files which implement the solution. *pharmacy_main.py* reads in the input file and uses the helper functions in *pharmacy_helper.py* to process the input in a dict and outputs the sorted results to a file. Below is the documentation for the source files.
 
 NAME
     pharmacy_main
@@ -16,8 +16,6 @@ FUNCTIONS
                 decreasing cost (values['cost']). the ordered dict is then written as a
                 comma separated file of drug, number of unique prescribers, total cost.
 ```
-
-Help on module pharmacy_helper:
 
 NAME
     pharmacy_helper

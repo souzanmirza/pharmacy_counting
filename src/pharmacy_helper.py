@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+
 def positiveNumber(field):
     """
     Checks if field is a positive decimal number.
