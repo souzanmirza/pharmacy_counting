@@ -32,14 +32,14 @@ FUNCTIONS
         :return: dict with entry added or updated
     
     positiveNumber(field)
-        Checks if field is a positive float.
+        Checks if field is a positive decimal number.
         :param field: string
-        :return: float(field) if positive float. False otherwise.
+        :return: Decimal(field) if decimal float. False otherwise.
     
     validEntry(entry)
         Checks if the entry is valid. Calls isPositiveNumber to check if the prescriber_id and 
-        cost are positive floats.
+        cost are positive decimals.
         :param entry: [prescriber_id, prescriber_fn, prescriber_ln, drug, cost]
         :return: True if valid and entry with updated fields. False otherwise.
-```
 
+```
