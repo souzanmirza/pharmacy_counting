@@ -36,7 +36,7 @@ def main():
 
         drugs_paired = zip(drug_dict.keys(), drug_dict.values())
         drugs_paired = list(drugs_paired)
-        drugs_paired = sorted(drugs_paired, key=lambda row: (-round(row[1]['cost']), row[0]))
+        drugs_paired = sorted(drugs_paired, key=lambda row: (-row[1]['cost'], row[0]))
 
         with open(args.dboutput, 'w', newline='\n') as pharmacy_outfile:
             fieldnames = ['drug_name', 'num_prescriber', 'total_cost']
@@ -46,7 +46,7 @@ def main():
                 writer.writerow(
                     {'drug_name': entry[0],
                      'num_prescriber': len(entry[1]) - 1,
-                     'total_cost': round(entry[1]['cost'])}
+                     'total_cost': entry[1]['cost']}
                 )
             pharmacy_outfile.truncate(pharmacy_outfile.tell() - len(os.linesep))
 
